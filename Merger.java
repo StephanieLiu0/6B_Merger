@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Merger {
 
-    ArrayList<String> usersData;
+    ArrayList<String> usersData, tempList;
 
     /**
       Construct an instance from a list of data
@@ -25,9 +25,39 @@ public class Merger {
         int start0  // index of first item in list0
       , int start1  // index of first item in list1
                     // = just past end of list0
-      , int nItems  // number of items in the merged list
-                    // = just past end of list1
+      , int end1    // just past end of list1
       ) {
+
+	ArrayList<String> tempList = new ArrayList<String> (end1-start0);
+	int startI = start0;
+	int boundary = start1;
+	
+	while ( start0<boundary  && start1<end1 ) {
+	    if ( usersData.get(start0).compareTo( usersData.get(start1)) < 0) {
+		tempList.add( usersData.get(start0));
+		start0++;
+	    }
+	    else {
+		tempList.add( usersData.get(start1));
+		start1++;
+	    }
+	}
+
+	while ( start0<boundary ) {
+	    tempList.add( usersData.get(start0));
+	    start0++;
+	}
+
+	while (start1<end1 ) {
+	    tempList.add( usersData.get(start1));
+	    start1++;
+	}
+	
+	for ( int startIUser = startI, startITemp = 0;
+	      startIUser<= tempList.size();
+	      startIUser++, startITemp ++) {
+	    usersData.set( startIUser, tempList.get(startITemp));
+	}
     }
 
 
@@ -48,7 +78,14 @@ public class Merger {
            ; i < endBefore -1 // stop early, because comparing to next
            ; i++
            )
-            if( usersData.get(i).compareTo( usersData.get(i+1)) > 0) return false;
+            if( usersData.get(i).compareTo( usersData.get(i+1)) > 0) {
+                 System.out.println( "trouble between position " + i 
+                                  + ", which holds " + usersData.get(i)
+                                  + ", and position " + (i +1)
+                                  + ", which holds " + usersData.get(i +1)
+                                  );
+               return false;
+            }
         return true;
     }
 }

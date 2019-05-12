@@ -19,7 +19,7 @@ public class UserOfMerge {
             , "4", "5", "6", "9"
 
               // the other sorted sub-list
-            , "2", "3", "4", "6", "7", "J", "Q", "K"
+            , "2", "3", "4", "6", "7", "J", "Q", "k"
             
               // more data to be ignored
             , "-", "+", "*"  // descending order
@@ -40,8 +40,7 @@ public class UserOfMerge {
       , int start0  // index of first item in list0
       , int start1  // index of first item in list1
                     // = just past end of list0
-      , int nItems  // number of items in the merged list
-                    // = just past end of list1
+      , int end1    // index past end of list1
 
                                ) {
 
@@ -52,14 +51,12 @@ public class UserOfMerge {
           + description + System.lineSeparator()
           + "before: " + merger
           );
-        merger.merge( start0, start1, nItems);
+        merger.merge( start0, start1, end1);
         System.out.println( "after:  " + merger);
         System.out.println(
             "sorted: "
-          + merger.isSorted( start0, nItems));
+          + merger.isSorted( start0, end1));
      }
     
 
 }
-
-
