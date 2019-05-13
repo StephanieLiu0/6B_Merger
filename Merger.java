@@ -28,7 +28,7 @@ public class Merger {
       , int end1    // just past end of list1
       ) {
 
-	ArrayList<String> tempList = new ArrayList<String> (end1-start0);
+	tempList = new ArrayList<String> (end1-start0);
 	int startI = start0;
 	int boundary = start1;
 	

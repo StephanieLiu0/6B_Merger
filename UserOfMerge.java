@@ -56,7 +56,6 @@ public class UserOfMerge {
         System.out.println(
             "sorted: "
           + merger.isSorted( start0, end1));
-     }
-    
+    }
 
 }
