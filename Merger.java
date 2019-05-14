@@ -29,34 +29,31 @@ public class Merger {
       ) {
 
 	tempList = new ArrayList<String> (end1-start0);
-	int startI = start0;
+	for( int startIUser = start0; startIUser < end1; startIUser++)
+	    tempList.add( usersData.get( startIUser));
+	
+	int destination = start0;
+	start0 -=2;
+	start1 -=2;
+	end1 -=2;
 	int boundary = start1;
 	
 	while ( start0<boundary  && start1<end1 ) {
-	    if ( usersData.get(start0).compareTo( usersData.get(start1)) < 0) {
-		tempList.add( usersData.get(start0));
-		start0++;
+	    if ( tempList.get(start0).compareTo( tempList.get(start1)) < 0) {
+		usersData.set( destination++, tempList.get(start0++));
 	    }
 	    else {
-		tempList.add( usersData.get(start1));
-		start1++;
+	        usersData.set( destination++, tempList.get(start1++));
 	    }
-	}
-
-	while ( start0<boundary ) {
-	    tempList.add( usersData.get(start0));
-	    start0++;
-	}
-
-	while (start1<end1 ) {
-	    tempList.add( usersData.get(start1));
-	    start1++;
+	    System.out.println( usersData);
 	}
 	
-	for ( int startIUser = startI, startITemp = 0;
-	      startIUser<= tempList.size();
-	      startIUser++, startITemp ++) {
-	    usersData.set( startIUser, tempList.get(startITemp));
+	while ( start0<boundary ) {
+	    usersData.set( destination++, tempList.get(start0++));
+	}
+
+	while ( start1<end1 ) {
+	    usersData.set( destination++, tempList.get(start1++));	
 	}
     }
 
