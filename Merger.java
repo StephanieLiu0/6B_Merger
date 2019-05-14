@@ -33,9 +33,9 @@ public class Merger {
 	    tempList.add( usersData.get( startIUser));
 	
 	int destination = start0;
-	start0 -=2;
-	start1 -=2;
-	end1 -=2;
+	start1 -= start0;
+	end1 -=start0;
+	start0 = 0;
 	int boundary = start1;
 	
 	while ( start0<boundary  && start1<end1 ) {
